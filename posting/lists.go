@@ -41,7 +41,7 @@ const (
 var (
 	pstore *badger.DB
 	closer *z.Closer
-	lCache *ristretto.Cache
+	lCache *ristretto.Cache[string, *List]
 )
 
 // Init initializes the posting lists package, the in memory and dirty list hash.
@@ -56,13 +56,13 @@ func Init(ps *badger.DB, cacheSize int64) {
 	}
 
 	var err error
-	lCache, err = ristretto.NewCache(&ristretto.Config{
+	lCache, err = ristretto.NewCache(&ristretto.Config[string, *List]{
 		// Use 5% of cache memory for storing counters.
 		NumCounters: int64(float64(cacheSize) * 0.05 * 2),
 		MaxCost:     int64(float64(cacheSize) * 0.95),
 		BufferItems: 64,
 		Metrics:     true,
-		Cost: func(val interface{}) int64 {
+		Cost: func(val *List) int64 {
 			return 0
 		},
 	})
