@@ -2,7 +2,7 @@ module github.com/dgraph-io/dgraph
 
 go 1.22
 
-replace github.com/dgraph-io/badger/v4 => /home/harshil/badger/
+replace github.com/dgraph-io/badger/v4 => /home/harshil/Projects/badger/
 
 replace sourcegraph.com/sourcegraph/appdash => github.com/sourcegraph/appdash v0.0.0-20180110180208-2cc67fd64755
 
