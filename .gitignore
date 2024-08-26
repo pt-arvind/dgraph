@@ -24,7 +24,6 @@ dgraph.iml
 #darwin
 .DS_Store
 
-vendor
 .minio.sys
 
 # Local test files
